@@ -5,6 +5,7 @@ namespace App;
 class Cart
 {
 	private $products;
+
 	/**
 	*@param Product
 	*@param amount
@@ -30,10 +31,15 @@ class Cart
 
 	public function getTotal()
 	{
-		
+		if (isset($this->products)) {
+			$total = 0;
+			foreach ($this->products as $product) {
+				$total += $product['amount'] * $product['product']->getPrice();
+			}
+			return $total;
+		}
+
+		return null;
 	}
-	
 
-
-	
 }
